@@ -50,10 +50,18 @@
  * 1. Dilarang menggunakan built-in function selain push dan unshift.
  */
 
+
+// var arr = ['asdsads']
+// arr[1] = 'baru'
+
+// console.log(arr)
+
 function beliBoba(uangJajan) {
   let totalBeli = 0;
   let arrTerbeli = ["Terbeli"];
   let arrLainKali = ["Lain Kali"];
+  let totalBelanja = 0
+  let sisaUang = 0
   let res = [];
   var listBoba = [
     ["Xing Fu Tang", 38000],
@@ -63,21 +71,20 @@ function beliBoba(uangJajan) {
     ["Kokumi", 42000],
     ["Bubble Station Milk", 13000]
   ];
-  // Write your code here
-  for (let i = 0; i < listBoba.length; i++) {
-    if (totalBeli <= uangJajan-13000) {
-      totalBeli += listBoba[i][1];
-      arrTerbeli.push(listBoba[i][0]);
-    } else {
-      arrLainKali.push(listBoba[i][0]);
+  for (let i=0;i<listBoba.length;i++){
+    if(uangJajan>listBoba[i][1]){
+      uangJajan -= listBoba[i][1]
+      totalBelanja += listBoba[i][1]
+      arrTerbeli[1] = totalBelanja
+      arrTerbeli.push(listBoba[i][0])
+    }else{
+      arrLainKali[1] = uangJajan
+      arrLainKali.push(listBoba[i][0])
     }
   }
-  let uangSisa = uangJajan - totalBeli
-  arrTerbeli.splice(1,0,totalBeli)
-  arrLainKali.splice(1,0,uangSisa)
-  res.push(arrTerbeli);
-  res.push(arrLainKali);
-  return res;
+  res.push(arrTerbeli)
+  res.push(arrLainKali)
+  return res
 }
 
 console.log(beliBoba(100000));
@@ -87,7 +94,6 @@ console.log(beliBoba(100000));
 // ]
 
 console.log(beliBoba(200000));
-console.log('baru', beliBoba(15000));
 // [
 //   ['Terbeli', 194500, 'Xing Fu Tang', 'OneZo', 'KOI The', 'Chatime', 'Kokumi'],
 //   ['Lain Kali', 5500, 'Bubble Station Milk']
